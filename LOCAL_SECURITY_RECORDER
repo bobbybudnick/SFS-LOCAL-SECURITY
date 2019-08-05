@@ -1,0 +1,32 @@
+#!/bin/bash
+
+#Broadcasts USB camera stream to network
+#resets once per day and saves a backup
+#you can change the sleep to any number you like to record more and thus have a larger recording and backup
+
+echo "Here we go!"
+
+TESTER=1
+
+while [ "$TESTER" -eq "1" ]
+do
+
+echo "Starting VNC"
+cd /media/TEST/
+cvlc v4l2:///dev/video0 :input-slave=alsa:// :v4l2-standard=0 :file-caching=300 --sout-http-user=root --sout-http-pwd=passwordgoeshere --sout='#transcode{vcodec=mp4v,vb=800,width=320,height=240,acodec=none}:duplicate{dst=file{mux=ts,dst=stream},dst=http{mux=ts,dst=:8080/}}' :no-sout-rtp-sap :no-sout-standard-sap :sout-keep&
+sleep 86400
+echo "Stopping VNC"
+killall vlc
+sleep 1
+cp stream stream.backup
+sleep 30
+
+TESTING=$( awk '{ print }' ~/CONTROL )
+if [ "$TESTING" -eq "1" ]
+then
+echo "Stopping loop"
+exit
+fi
+
+done
+
