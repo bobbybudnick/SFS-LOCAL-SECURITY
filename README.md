@@ -1,7 +1,7 @@
 # SFS-LOCAL-SECURITY
 This scripts implements a USB security camera monitoring scheme.
 
-Local security linux is the viewer script optimized for Linux OS.
+Local security Linux is the viewer script optimized for Linux OS.
 
 Local security recorder is the master recording script.
 
