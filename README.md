@@ -7,5 +7,7 @@ Local security recorder is the master recording script.
 
 Use the window manager's tiling feature to have a cheap multi window security monitor.
 
+Be sure to find and replace the password "passwordgoeshere" on both source code files.
+
 It has been a while since it was tested.
 
